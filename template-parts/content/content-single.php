@@ -5,51 +5,69 @@
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
  * @package WordPress
- * @subpackage Twenty_Nineteen
- * @since Twenty Nineteen 1.0
+ * @subpackage Twenty_Twenty_One
+ * @since Twenty Twenty-One 1.0
  */
 
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<?php if ( ! twentynineteen_can_show_post_thumbnail() ) : ?>
-	<header class="entry-header">
-		<?php get_template_part( 'template-parts/header/entry', 'header' ); ?>
-	</header>
-	<?php endif; ?>
+
+	<header class="entry-header alignwide">
+		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+		<?php the_category( '<h1 class="entry-title">', '</h1>' ); ?>
+		
+	
+		
+		<?php 
+		
+		
+		if(has_post_thumbnail())
+		{ 
+			the_post_thumbnail('large'); 
+			echo "thumbnail detected"; 
+		}
+		
+			else 
+			{
+				echo "No thumbnail present";
+			} 
+		
+		?>
+		
+<h1><?php the_title(); ?></h1>	
+
+
+
+<?php function our_print_greeting(){ ?>
+	<h1> You are very welcome.</h1>
+<?php } ?>
+	
+<?php our_print_greeting(); ?>
+
+	</header><!-- .entry-header -->
 
 	<div class="entry-content">
 		<?php
-		the_content(
-			sprintf(
-				wp_kses(
-					/* translators: %s: Post title. Only visible to screen readers. */
-					__( 'Continue reading<span class="screen-reader-text"> "%s"</span>', 'twentynineteen' ),
-					array(
-						'span' => array(
-							'class' => array(),
-						),
-					)
-				),
-				get_the_title()
-			)
-		);
+		the_content();
 
 		wp_link_pages(
 			array(
-				'before' => '<div class="page-links">' . __( 'Pages:', 'twentynineteen' ),
-				'after'  => '</div>',
+				'before'   => '<nav class="page-links" aria-label="' . esc_attr__( 'Page', 'twentytwentyone' ) . '">',
+				'after'    => '</nav>',
+				/* translators: %: Page number. */
+				'pagelink' => esc_html__( 'Page %', 'twentytwentyone' ),
 			)
 		);
 		?>
 	</div><!-- .entry-content -->
 
-	<footer class="entry-footer">
-		<?php twentynineteen_entry_footer(); ?>
+	<footer class="entry-footer default-max-width">
+		<?php twenty_twenty_one_entry_meta_footer(); ?>
 	</footer><!-- .entry-footer -->
 
 	<?php if ( ! is_singular( 'attachment' ) ) : ?>
-		<?php get_template_part( 'template-parts/post/author', 'bio' ); ?>
+		<?php get_template_part( 'template-parts/post/author-bio' ); ?>
 	<?php endif; ?>
 
 </article><!-- #post-<?php the_ID(); ?> -->
