@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The template for displaying all single posts
  *
@@ -11,22 +12,10 @@
 
 get_header();
 
-function seperate_templates()
-{
-	$our_title = get_the_title( get_option('page_for_posts', true) );
-	
-	switch($our_title){
-		
-		case "Home page":
-		echo "Found home page";
-		break;
-		
-		case "Button page":
-		echo "Found button page";
-		break;
-	}
-	
-}
+
+/*
+ *filter pages for seperate editing
+ */
 
 
 
@@ -36,6 +25,8 @@ while ( have_posts() ) :
 
 	get_template_part( 'template-parts/content/content-page' );
 	
+	/*Function call other file*/
+	include 'filter.php';
 	seperate_templates();
 
 	// If comments are open or there is at least one comment, load up the comment template.
@@ -45,3 +36,5 @@ while ( have_posts() ) :
 endwhile; // End of the loop.
 
 get_footer();
+
+?>
