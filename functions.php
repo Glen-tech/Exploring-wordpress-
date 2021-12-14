@@ -44,6 +44,11 @@ if ( ! function_exists( 'twenty_twenty_one_setup' ) ) {
 		 * WordPress will provide it for us.
 		 */
 		add_theme_support( 'title-tag' );
+		
+		
+		/*Adding custom function for difirent template use*/
+		
+		add_theme_support('block-templates');
 
 		/**
 		 * Add post-formats support.

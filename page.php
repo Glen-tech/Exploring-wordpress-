@@ -26,7 +26,6 @@ while ( have_posts() ) :
 	get_template_part( 'template-parts/content/content-page' );
 	
 	/*Function call other file*/
-	include 'filter.php';
 	seperate_templates();
 
 	// If comments are open or there is at least one comment, load up the comment template.
